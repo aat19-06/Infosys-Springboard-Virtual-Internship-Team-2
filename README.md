@@ -9,5 +9,6 @@
 | Team Member | Abdul Ruksar |
 | Team Member | Steny Thankkam Raju |
 | Team Member | Namrata Gaikwad |
+| Team Member | Shanmugam |
 
-Total Strength: 5 Members
+Total Strength: 6 Members
