@@ -1,4 +1,3 @@
-
 from typing import Any
 
 
@@ -24,7 +23,7 @@ def _result(
     config: dict[str, Any],
     transcript: list[dict[str, Any]],
     status: str,
-    agreed_price: int | None,
+    agreed_price: float | None,
     turns_used: int,
     agreement_details: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -50,9 +49,7 @@ def negotiate_vendor_pricing(
     vendor = agents.get("vendor")
 
     if not buyer or not vendor:
-        raise ValueError(
-            "Vendor Pricing requires buyer and vendor agents."
-        )
+        raise ValueError("Vendor Pricing requires buyer and vendor agents.")
 
     budget = 80000
     minimum = 65000
@@ -171,9 +168,7 @@ def negotiate_job_offer(
     recruiter = agents.get("recruiter")
 
     if not candidate or not recruiter:
-        raise ValueError(
-            "Job Offer requires candidate and recruiter agents."
-        )
+        raise ValueError("Job Offer requires candidate and recruiter agents.")
 
     # Illustrative salary figures in LPA.
     candidate_minimum = 9.0
@@ -195,9 +190,7 @@ def negotiate_job_offer(
         "Risk-Averse": 9.2,
     }[recruiter_personality]
 
-    transcript = [
-        _entry(0, "Orchestrator", "Job offer negotiation started.")
-    ]
+    transcript = [_entry(0, "Orchestrator", "Job offer negotiation started.")]
 
     agreement = None
     turns_used = 0
@@ -247,7 +240,8 @@ def negotiate_job_offer(
 
         recruiter_offer = min(
             recruiter_maximum,
-            recruiter_offer + max(
+            recruiter_offer
+            + max(
                 0.2,
                 (candidate_offer - recruiter_offer) / 2,
             ),
@@ -276,7 +270,8 @@ def negotiate_job_offer(
 
         candidate_offer = max(
             candidate_minimum,
-            candidate_offer - max(
+            candidate_offer
+            - max(
                 0.2,
                 (candidate_offer - recruiter_offer) / 2,
             ),
@@ -315,8 +310,7 @@ def negotiate_project_budget(
     manager = agents.get("project-manager")
 
     department_agents = [
-        agent for agent in config["agents"]
-        if agent["id"] != "project-manager"
+        agent for agent in config["agents"] if agent["id"] != "project-manager"
     ]
 
     if not manager or not department_agents:
@@ -332,9 +326,7 @@ def negotiate_project_budget(
         "operations-lead": 3.0,
     }
 
-    transcript = [
-        _entry(0, "Orchestrator", "Project budget allocation started.")
-    ]
+    transcript = [_entry(0, "Orchestrator", "Project budget allocation started.")]
 
     turns_used = 1
     requested_total = 0.0

@@ -1,8 +1,7 @@
-
 import pytest
 from pydantic import ValidationError
 
-from backend.schemas import ScenarioConfig
+from schemas import ScenarioConfig
 
 
 @pytest.fixture
@@ -67,9 +66,7 @@ def test_blank_agent_fields_are_rejected(valid_config, field, value):
 
 def test_duplicate_agent_ids_are_rejected(valid_config):
     valid_config["agents"][1]["id"] = "buyer"
-    with pytest.raises(
-        ValidationError, match="Agent IDs must be unique"
-    ):
+    with pytest.raises(ValidationError, match="Agent IDs must be unique"):
         ScenarioConfig.model_validate(valid_config)
 
 

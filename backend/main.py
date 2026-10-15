@@ -1,9 +1,7 @@
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-
-from schemas import ScenarioConfig, NegotiationRequest
 from negotiation_engine import run_negotiation
+from schemas import NegotiationRequest, ScenarioConfig
 
 app = FastAPI(
     title="Multi-Agent Negotiation Simulator API",
@@ -25,9 +23,7 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    return {
-        "message": "Multi-Agent Negotiation Simulator Backend is running"
-    }
+    return {"message": "Multi-Agent Negotiation Simulator Backend is running"}
 
 
 @app.get("/health")
