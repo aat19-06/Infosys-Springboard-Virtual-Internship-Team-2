@@ -251,7 +251,7 @@ def negotiate_job_offer(
             _entry(
                 turn,
                 recruiter["name"],
-                f"Recruiter counter-offers {recruiter_offer:.1f} LPA.",
+                f"Recruiter counter-offers {recruiter_offer:g} LPA.",
                 recruiter_offer,
             )
         )
@@ -262,7 +262,7 @@ def negotiate_job_offer(
                 _entry(
                     turn,
                     candidate["name"],
-                    f"Candidate accepts {agreement:.1f} LPA.",
+                    f"Candidate accepts {agreement:g} LPA.",
                     agreement,
                 )
             )
@@ -284,7 +284,7 @@ def negotiate_job_offer(
             turns_used,
             "Orchestrator",
             (
-                f"Final agreed salary: {agreement:.1f} LPA."
+                f"Final agreed salary: {agreement:g} LPA."
                 if agreement is not None
                 else "No salary agreement reached within the turn limit."
             ),
